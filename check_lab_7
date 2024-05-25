@@ -1,0 +1,9 @@
+# Позитивные тесты
+3 4 5 nonequilateral
+2 2 3 isosceles
+3 3 3 equilateral
+
+# Негативные тесты
+1 2 5 IncorrectTriangleSides
+0 2 3 ValueError
+-1 2 3 ValueError
