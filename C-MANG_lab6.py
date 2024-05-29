@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify
-import psycopg2
+from flask import Flask, request, jsonify  # Импорт необходимых модулей
+import psycopg2  # Импорт модуля для работы с PostgreSQL
 
-app = Flask(__name__)
+app = Flask(__name__)  # Создание объекта приложения Flask
 
 # Установка соединения с БД
 conn = psycopg2.connect(
@@ -13,9 +13,10 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-@app.route('/load', methods=['POST'])
+
+@app.route('/load', methods=['POST'])  # Декоратор для обработки POST запроса по указанному URL
 def load_currency():
-    data = request.get_json()
+    data = request.get_json()  # Получение данных из POST запроса
     currency_name = data['currency_name']
     currency_rate = data['rate']
 
@@ -30,9 +31,10 @@ def load_currency():
 
     return jsonify({'message': 'Currency loaded successfully'}), 200
 
-@app.route('/update_currency', methods=['POST'])
+
+@app.route('/update_currency', methods=['POST'])  # Декоратор для обработки POST запроса по указанному URL
 def update_currency():
-    data = request.get_json()
+    data = request.get_json()  # Получение данных из POST запроса
     currency_name = data['currency_name']
     new_rate = data['rate']
 
@@ -47,9 +49,10 @@ def update_currency():
 
     return jsonify({'message': 'Currency updated successfully'}), 200
 
-@app.route('/delete', methods=['POST'])
+
+@app.route('/delete', methods=['POST'])  # Декоратор для обработки POST запроса по указанному URL
 def delete_currency():
-    data = request.get_json()
+    data = request.get_json()  # Получение данных из POST запроса
     currency_name = data['currency_name']
 
     # Проверка наличия валюты в БД
@@ -63,5 +66,6 @@ def delete_currency():
 
     return jsonify({'message': 'Currency deleted successfully'}), 200
 
+
 if __name__ == '__main__':
-    app.run(port=5001)
+    app.run(port=5001)  # Запуск приложения Flask на указанном порту
